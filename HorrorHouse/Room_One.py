@@ -55,7 +55,7 @@ def screen1():
                         family = imagesprite("Family.jpg", 100, 0)
                         call_sprite(family, "Image", Bedroom)
                         picture_wait = event.wait()
-                        image_hover(family.rect), image_click(family.rect, picture_wait)
+                        image_click(family.rect, picture_wait)
                         if family.rect.collidepoint(mouse.get_pos()):
                             if picture_wait.type == MOUSEBUTTONDOWN:
                                 break
