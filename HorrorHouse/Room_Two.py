@@ -8,9 +8,9 @@ def transition_screen2():
 
     while True:
         transition_screen("Room 2")
-        e = event.wait()
+        transition_wait = event.wait()
         display.update()
-        if e.type == MOUSEBUTTONDOWN:
+        if transition_wait.type == MOUSEBUTTONDOWN:
             screen2()
 
 def screen2():
@@ -54,7 +54,7 @@ def screen2():
         image_click(book, room2_wait), image_click(sink, room2_wait), image_click(vase3, room2_wait), image_click(vase2, room2_wait), image_click(vase1, room2_wait)
         image_click(clock, room2_wait), image_click(showerhead, room2_wait), image_click(button1, room2_wait), image_click(button2, room2_wait), image_click(button3, room2_wait)
         image_click(black_box, room2_wait), image_click(door, room2_wait), image_click(black_stand, room2_wait)
-
+        #Interactions for the "first event" (lines 58 - 93)
         if bathroom_event == 0:
             if vase1.collidepoint(mouse.get_pos()):
                 if room2_wait.type == MOUSEBUTTONDOWN:
@@ -92,7 +92,7 @@ def screen2():
                             pygame.display.set_caption("House")
                             break
 
-
+        #Interactions for the "second event" (lines 96 - 149)
         if bathroom_event == 1:
             if sink.collidepoint(mouse.get_pos()):
                 if room2_wait.type == MOUSEBUTTONDOWN:
@@ -147,7 +147,7 @@ def screen2():
                         if hint_wait.type == MOUSEBUTTONDOWN:
                             pygame.display.set_caption("House")
                             break
-
+        #Interactions for the "third event" (lines 150 - 190)
         if bathroom_event == 2:
             if mirror.collidepoint(mouse.get_pos()):
                 if room2_wait.type == MOUSEBUTTONDOWN:
@@ -188,7 +188,7 @@ def screen2():
                         if hint_wait.type == MOUSEBUTTONDOWN:
                             pygame.display.set_caption("House")
                             break
-
+        #Interactions for the "fourth event" (lines 192 - 228)
         if bathroom_event == 3:
             if showerhead.collidepoint(mouse.get_pos()):
                 if room2_wait.type == MOUSEBUTTONDOWN:
@@ -209,6 +209,7 @@ def screen2():
             if clock.collidepoint(mouse.get_pos()):
                 if room2_wait.type == MOUSEBUTTONDOWN:
                     import Puzzle; Puzzle.Puzzle1()
+                    break
             if black_box.collidepoint(mouse.get_pos()):
                 if room2_wait.type == MOUSEBUTTONDOWN:
                     Ghost(bathroom, 'Bathroom.jpg', 'Scare.png', 250, 0)

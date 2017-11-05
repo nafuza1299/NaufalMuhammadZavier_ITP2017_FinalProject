@@ -42,6 +42,7 @@ def menu():
                 while True:
                     Ghost(menuscreen, "Menu.png", "Jumpscare.png", 0, 0)
                     intro()
+                    break
         if quit.rect.collidepoint(mouse.get_pos()):
             if menu_wait.type == MOUSEBUTTONDOWN:
                 pygame.quit()
@@ -81,6 +82,7 @@ def levelscreen():
         if back.rect.collidepoint(mouse.get_pos()):
             if level_wait.type == MOUSEBUTTONDOWN:
                 menu()
+                break
         if level_wait.type == QUIT:
             pygame.quit()
             break
@@ -103,6 +105,7 @@ def intro():
         if skip.rect.collidepoint(mouse.get_pos()):
             if intro_wait.type == MOUSEBUTTONDOWN:
                 import Room_One; Room_One.transition_screen1()
+                break
         if intro_wait.type == MOUSEBUTTONDOWN:
             intro1 = textsprite("Diediedie", "The place has a history with the supernatural", 30, 0, 100, 255, 255, 255)
             call_sprite(intro1, "Fill", intro_screen)
@@ -122,6 +125,7 @@ def intro():
                         if continue_text.rect.collidepoint(mouse.get_pos()):
                             if intro_wait.type == MOUSEBUTTONDOWN:
                                 import Room_One; Room_One.transition_screen1()
+                                break
         display.update()
 
 def Outro():
@@ -141,6 +145,7 @@ def Outro():
         if skip.rect.collidepoint(mouse.get_pos()):
             if outro_wait.type == MOUSEBUTTONDOWN:
                 game_completed()
+                break
         if outro_wait.type == MOUSEBUTTONDOWN:
             outro1 = textsprite("Diediedie", "However, the memory still haunts you", 30, 0, 100, 255, 255, 255)
             call_sprite(outro1, "Fill", outro_screen)
@@ -160,6 +165,7 @@ def Outro():
                         if continue_text.rect.collidepoint(mouse.get_pos()):
                             if outro_wait.type == MOUSEBUTTONDOWN:
                                 game_completed()
+                                break
 
         display.update()
 

@@ -39,6 +39,7 @@ def Puzzle1():
                         if move_wait.type == MOUSEBUTTONDOWN:
                             image_click(puzzle_pos.rect, move_wait)
                             Puzzle2()
+                            break
                     if move_wait.type == QUIT:
                         pygame.quit()
                         break
@@ -79,6 +80,7 @@ def Puzzle2():
                         if move_wait.type == MOUSEBUTTONDOWN:
                             image_click(puzzle_pos.rect, move_wait)
                             Puzzle3()
+                            break
                     if move_wait.type == QUIT:
                         pygame.quit()
                         break
@@ -163,6 +165,7 @@ def Puzzle4():
                         if move_wait.type == MOUSEBUTTONDOWN:
                             image_click(puzzle_pos.rect, move_wait)
                             Puzzle5()
+                            break
                     if move_wait.type == QUIT:
                         pygame.quit()
                         break

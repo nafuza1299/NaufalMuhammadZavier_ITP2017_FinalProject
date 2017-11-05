@@ -96,6 +96,7 @@ def Gameover():
         if gameover_wait.type == MOUSEBUTTONDOWN:
             reset()
             import HouseHub; HouseHub.menu()
+            break
         display.update()
 
 
@@ -109,6 +110,7 @@ def game_completed():
         if gameover_wait.type == MOUSEBUTTONDOWN:
             reset()
             import HouseHub; HouseHub.menu()
+            break
         display.update()
 
 def pause_quit(eventname, mainscreen):
@@ -128,6 +130,7 @@ def pause_quit(eventname, mainscreen):
                     if menu_button.rect.collidepoint(mouse.get_pos()):
                         if pause_wait.type == MOUSEBUTTONDOWN:
                             import HouseHub; HouseHub.menu()
+                            break
                     if pause_wait.type == KEYDOWN:
                         if pause_wait.key == K_SPACE:
                             break

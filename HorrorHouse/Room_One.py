@@ -23,7 +23,7 @@ def screen1():
     door_unlock = 0
     scare = 0
     kharon = []
-    Bedroom = MainScreen('unnamed.jpg')
+    Bedroom = MainScreen('Bedroom.jpg')
     while True:
 
         picture = pygame.draw.rect(Bedroom.display, ((0, 0, 0)), (0, 150, 100, 100))
@@ -37,7 +37,7 @@ def screen1():
         Bedroom.display.blit(Bedroom.image, (0,0))
 
         room1_wait = event.wait()
-
+        #Lines 41 - 42 adds the sound effects for clicking and hovering
         image_hover(picturecross), image_hover(drawer), image_hover(picturedoor), image_hover(grab_key.rect)
         image_click(picturecross, room1_wait), image_click(drawer, room1_wait), image_click(picturedoor, room1_wait), image_click(grab_key.rect, room1_wait)
         if picturecount < 3:
@@ -46,7 +46,7 @@ def screen1():
             image_hover(ouija), image_click(ouija, room1_wait), image_hover(cupboard), image_click(cupboard, room1_wait)
         if picturecount < 3:
             image_hover(medicine), image_click(medicine, room1_wait)
-
+        #Interaction with the picture (lines 50 - 66)
         if picturecount < 3:
             if picture.collidepoint(mouse.get_pos()):
                 if room1_wait.type == MOUSEBUTTONDOWN:
@@ -62,9 +62,10 @@ def screen1():
                         if picturecount == 3:
                             if family.rect.collidepoint(mouse.get_pos()):
                                 if room1_wait.type == MOUSEBUTTONDOWN:
-                                    Ghost(Bedroom, 'unnamed.jpg', 'Scare.png', 250, 0)
+                                    Ghost(Bedroom, 'Bedroom.jpg', 'Scare.png', 250, 0)
                                 break
 
+        #Under the conditions in line 69, this will open the ouija board
         if key == 1 and door_unlock == 0:
             if ouija.collidepoint(mouse.get_pos()):
                 '''Opens the ouija board'''
@@ -110,6 +111,7 @@ def screen1():
                         text = Group(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, yes,no, goodbye, dash1, dash2, dash3, dash4, dash5, dash6)
                         text.draw(Bedroom.display)
                         ouija_wait = event.wait()
+                        # Generates every element in the ouija board, if an element is highlighted, it will change color
                         if goodbye.rect.collidepoint(mouse.get_pos()):
                             goodbye = textsprite("Diediedie", "Goodbye", 50, 480, 500, 255, 0, 0)
                             if ouija_wait.type == MOUSEBUTTONDOWN:
@@ -351,7 +353,7 @@ def screen1():
                                 text.draw(Bedroom.display)
                         else:
                             N = textsprite("Diediedie", "N", 50, 250, 350, 255, 255, 255)
-
+                        #If the following elements (lines 357 - 362) is in the list, the event will unlock
                         if "K" in kharon:
                             if "H" in kharon:
                                 if "A" in kharon:
@@ -369,22 +371,22 @@ def screen1():
                                                 break
                         if scare == 3:
                             while True:
-                                Ghost(Bedroom, 'unnamed.jpg', "Scare.png", 250, 0)
+                                Ghost(Bedroom, 'Bedroom.jpg', "Scare.png", 250, 0)
                                 import HouseHub; HouseHub.Gameover()
                                 break
                             break
                         display.update()
 
             display.update()
-
+        #Interaction with the drawer (lines 382 - 422)
         if drawer.collidepoint(mouse.get_pos()):
             if key == 0 and picturecount < 3:
                 if room1_wait.type == MOUSEBUTTONDOWN:
                     while True:
                         blocking_drawer = textsprite("Diediedie","Something is blocking the drawer", 45, 300, 400, 255, 255, 255)
                         call_sprite(blocking_drawer, "Image", Bedroom)
-                        a = event.wait()
-                        if a.type == MOUSEBUTTONDOWN:
+                        drawer_wait = event.wait()
+                        if drawer_wait.type == MOUSEBUTTONDOWN:
                             break
             if picturecount == 3:
                 if room1_wait.type == MOUSEBUTTONDOWN:
@@ -392,20 +394,20 @@ def screen1():
                     while True:
                         open_drawer = textsprite("Diediedie","The drawer is now open", 45, 300, 500, 255, 255, 255)
                         call_sprite(open_drawer, "Image", Bedroom)
-                        a2 = event.wait()
-                        if a2.type == MOUSEBUTTONDOWN:
+                        drawer_wait2 = event.wait()
+                        if drawer_wait2.type == MOUSEBUTTONDOWN:
                             break
                     while True:
                              call_sprite(grab_key, "Image", Bedroom)
-                             a3 = event.wait()
+                             drawer_wait3 = event.wait()
                              if grab_key.rect.collidepoint(mouse.get_pos()):
-                                 if a3.type == MOUSEBUTTONDOWN:
+                                 if drawer_wait3.type == MOUSEBUTTONDOWN:
                                     key += 1
                                     while True:
                                         obtained = textsprite("Diediedie","You obtained the key", 45, 300, 200, 255, 255, 255)
                                         call_sprite(obtained, "Image", Bedroom)
-                                        a4 = event.wait()
-                                        if a4.type == MOUSEBUTTONDOWN:
+                                        drawer_wait4 = event.wait()
+                                        if drawer_wait4.type == MOUSEBUTTONDOWN:
                                             break
                                         break
                                     break
@@ -418,7 +420,7 @@ def screen1():
                     wait = event.wait()
                     if wait.type == MOUSEBUTTONDOWN:
                         break
-
+        #Interaction with cross picture (line 424 - 439)
         if picturecross.collidepoint(mouse.get_pos()):
             if room1_wait.type == MOUSEBUTTONDOWN:
                 if key == 0:
@@ -435,7 +437,7 @@ def screen1():
                         presence_wait = event.wait()
                         if presence_wait.type == MOUSEBUTTONDOWN:
                             break
-
+        #Interaction with the door (lines 441 - 463)
         if picturedoor.collidepoint(mouse.get_pos()):
             if key == 0:
                 if room1_wait.type == MOUSEBUTTONDOWN:
@@ -448,8 +450,9 @@ def screen1():
             if door_unlock == 1:
                 if room1_wait.type == MOUSEBUTTONDOWN:
                     while True:
-                        Ghost(Bedroom, 'unnamed.jpg', 'Scare.png', 250, 0)
+                        Ghost(Bedroom, 'Bedroom.jpg', 'Scare.png', 250, 0)
                         import Room_Two; Room_Two.transition_screen2()
+                        break
             if key == 1:
                 if room1_wait.type == MOUSEBUTTONDOWN:
                     while True:
@@ -458,7 +461,7 @@ def screen1():
                         block_wait = event.wait()
                         if block_wait.type == MOUSEBUTTONDOWN:
                             break
-
+        #Interaction with the medicine (lines 465 - 473)
         if picturecount < 3:
             if medicine.collidepoint(mouse.get_pos()):
                 if room1_wait.type == MOUSEBUTTONDOWN:
@@ -468,7 +471,7 @@ def screen1():
                         hint_wait = event.wait()
                         if hint_wait.type == MOUSEBUTTONDOWN:
                             break
-
+        #Text appears under the conditions of line 475 - 480
         if "K" in kharon:
             if "H" in kharon:
                 if "A" in kharon:
@@ -477,7 +480,7 @@ def screen1():
                             if "N" in kharon:
                                 leave = textsprite("YouMurderer BB", "Leave", 75, 600, 200, 255, 0, 0)
                                 call_sprite(leave, "Image", Bedroom)
-
+        #Interaction with the cupboard (lines 484 - 492)
         if key == 1 and door_unlock == 0:
             if cupboard.collidepoint(mouse.get_pos()):
                     if room1_wait.type == MOUSEBUTTONDOWN:
